@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+{% load static %}
+<head>
+  <link rel="stylesheet" href="{% static 'css/login.css' %}" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Login</title>
+<script src="https://kit.fontawesome.com/9edf17a483.js" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="login">
+        <h3 class="text-center text-white pt-5" >Login</h3>
+        <div class="container">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12">
+                        <form id="login-form" class="form" action method="post">
+                            {% csrf_token %}
+                            <h3 class="text-center text-info">Connexion</h3>
+                            <div class="form-group">
+                                <label for="{{ form.username.id_for_label }}" class="text-info">
+                                    {{ form.username.label_tag }}
+                                </label>
+                                <br>
+                                <input type="text" name="{{form.username.html_name}}" id="{{ form.username.id_for_label }}" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label for="{{ form.password.id_for_label }}" class="text-info">
+                                    {{ form.password.label_tag }}
+                                </label>
+                                <br>
+                                <input type="text" name="{{form.password.html_name}}" id="{{ form.password.id_for_label }}" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn bnt-info">connecter</button>
+                            </div>
+                        </form>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>Demo</title>
+
+
+<script src="https://kit.fontawesome.com/9edf17a483.js" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+<!--  <style media="screen">
+
+
+  </style>-->
+</head>
+<body>
+
+
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Pets</a>
+      </nav>
+<div class="wrapper">
+     <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>Bootstrap Sidebar</h3>
+        </div>
+
+        <ul class="list-unstyled components">
+                       <li>
+                <a href="{% url 'home' %}">Accueil</a>
+            </li>
+            <li>
+
+                <a href="#">Pets</a>
+            </li>
+            <li>
+                <a href="{% url 'personnes' %}">Personnes</a>
+            </li>
+            <li>
+                <a href="{% url 'logout' %}">Déconnexion</a>
+            </li>
+            <li>
+                <a href="{% url 'password_change' %}">Changer mot de passe</a>
+            </li>
+        </ul>
+    </nav>
+	<div class="main-content">
+	<div class="content-container">
+    <div>
+        {% block content %} {% endblock %}
+    </div>
+    </div>
+	</div>
+
+
+
+</div>
+
+
+<script type="text/javascript">
+//I have determined the constant of some class function
+ var li_items = document.querySelectorAll(".sidebar ul li");
+var hamburger = document.querySelector(".hamburger");
+var wrapper = document.querySelector(".wrapper");
+
+//What will change if you move the mouse over the sidebar
+
+li_items.forEach((li_item)=>{
+	li_item.addEventListener("mouseenter", ()=>{
+
+
+			li_item.closest(".wrapper").classList.remove("hover_collapse");
+      //I have already added style information about hover_collapse
+
+	})
+  //In general, hover_collapse will be applied on the sidebar.
+
+//Hover_collapse will be removed from the sidebar when the mouse is moved
+})
+
+li_items.forEach((li_item)=>{
+	li_item.addEventListener("mouseleave", ()=>{
+
+			li_item.closest(".wrapper").classList.add("hover_collapse");
+      //Hover Collapse will be applied again when the mouse is removed
+
+	})
+})
+
+
+//Now I will execute the menu button
+
+//I have instructed here that hover_collapse will be applied and removed when the menu button is clicked.
+
+//This means that the first click will be applied and the second click will be removed
+hamburger.addEventListener("click", () => {
+
+	hamburger.closest(".wrapper").classList.toggle("hover_collapse");
+})
+</script>
+{% block script %} {% endblock %}
+</body>
+</html>

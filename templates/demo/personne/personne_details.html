@@ -1,0 +1,50 @@
+{% extends "demo/base.html" %} {% block content %}
+<div class="card">
+    <div class="card-header">
+        Coordonnées
+        <a href="{% url 'update_personne' personne.id %}" class="close">
+            <i class="fas fa-pen"></i>
+        </a>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col p-2">
+                <strong class="text-muted">Nom</strong> :
+                <span class="text-secondary">{{personne.nom}}</span>
+                <br />
+            </div>
+            <div class="col p-2">
+                <strong class="text-muted">Prenom</strong> :
+                <span class="text-secondary">{{personne.prenom}}</span>
+                <br />
+            </div>
+            <div class="row">
+                <div class="col p-2">
+                    <strong class="text-muted">Email</strong> :
+                    <span class="text-secondary">{{personne.email}}</span>
+                    <br />
+                </div>
+                <div class="col p-2">
+                    <strong class="text-muted">Téléphone</strong> :
+                    <span class="text-secondary">{{personne.telephone}}</span>
+                    <br />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col p-2">
+                    <strong class="text-muted">Adresse</strong> :
+                    <span class="text-secondary">
+                        {{personne.get_adresse_complete_str}}
+                    </span>
+                    <br />
+                </div>
+                <div class="col p-2">
+                    <strong class="text-muted">Commentaire</strong> :
+                    <span class="text-secondary">{{personne.commentaire}}</span>
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

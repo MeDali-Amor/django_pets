@@ -1,0 +1,91 @@
+{% extends "demo/base.html" %} {% load tag %} {% block content %}
+<div class="row p-4">
+    <div class="col-sm-12 mt-3">
+        <div class="card">
+            <div class="card-header">Recherche</div>
+            <form action="{% url 'personnes' %}" method="post">
+                <div class="card-body">
+                    <div class="row">{% csrf_token %} {{ form.as_p }}</div>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa fa-search"></i> Recherche
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="table-responsive-sm p-4">
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Nom</th>
+                <th scope="col">Prenom</th>
+                <th scope="col">Adresse</th>
+                <th scope="col">Téléphone</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for personne in personne_list %}
+            <tr>
+                <td>
+                    <a
+                        href="{% url 'details_personne' personne.id %}"
+                        class="link-dark"
+                        >{{personne.nom}}</a
+                    >
+                </td>
+                <td>{{personne.prenom}}</td>
+                <td>{{personne.get_adresse_complete_str}}</td>
+                <td>{{personne.telephone}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="d-flex justify-content-between w-100 p-3">
+        <nav>
+            <ul class="pagination">
+                {% if personne_list.has_previous %}
+                <li class="page-item">
+                    <a
+                        class="page-link"
+                        href="?{% param_replace page=personne_list.previous_page_number %}"
+                        >Précédent</a
+                    >
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#">Précédent</a>
+                </li>
+                {% endif %}
+                <li class="page-item d-flex align-items-center p-2">
+                    <span class="current text-center align-middle">
+                        Page {{ personne_list.number}} sur
+                        {{personne_list.paginator.num_pages}}
+                    </span>
+                </li>
+                {% if personne_list.has_next %}
+                <li class="page-item">
+                    <a
+                        class="page-link"
+                        href="?{% param_replace page=personne_list.next_page_number %}"
+                        >Suivant</a
+                    >
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#">Précédent</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        <div>
+            <a href="{% url 'create_personne' %}" class="btn btn-info">
+                Ajouter une personne</a
+            >
+        </div>
+    </div>
+</div>
+{% endblock %}
